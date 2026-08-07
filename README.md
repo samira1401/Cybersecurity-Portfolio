@@ -12,12 +12,15 @@ Ce dépôt regroupe les projets, laboratoires, scripts et travaux réalisés dan
 
 - Plus de 20 ans d'expérience en technologies de l'information
 - Formation universitaire spécialisée en cybersécurité
-- Recherche d'un poste d'Analyste en cybersécurité / Analyste SOC Niveau 1
-- Basée à Montréal (Québec, Canada)
+- Ouverte aux opportunités en cybersécurité
 
 ---
 
 # 🎓 Formation
+
+### Université de Sherbrooke (Campus de Longueuil)
+**Diplôme d'études supérieures spécialisées (DESS) en sécurité informatique**  
+*En cours*
 
 ### Polytechnique Montréal
 
