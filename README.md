@@ -109,17 +109,12 @@ Ce dépôt sera enrichi progressivement avec des projets pratiques démontrant m
 
 ---
 
-# 🎯 Objectif
 
-Développer un portfolio démontrant des compétences concrètes en :
 
-- Surveillance de sécurité (SOC)
-- Analyse de vulnérabilités
-- Sécurité des réseaux
-- Investigation numérique
-- Administration sécurisée
-- Réponse aux incidents
-- Automatisation avec Python et PowerShell
+## 🎯 Objectif professionnel
+
+Je suis actuellement à la recherche d'une opportunité en cybersécurité, notamment dans les domaines de la sécurité opérationnelle, de l'analyse de vulnérabilités, de la sécurité réseau et des infrastructures, de la réponse aux incidents, de la cyberenquête, de la sécurité des systèmes et de la gouvernance de la sécurité.
+
 
 ---
 
