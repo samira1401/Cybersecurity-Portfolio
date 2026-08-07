@@ -126,7 +126,7 @@ Développer un portfolio démontrant des compétences concrètes en :
 
 📧 **samira1401@gmail.com**
 
-💼 LinkedIn : *(à ajouter)*
+💼 LinkedIn : *( à venir )*
 
 ---
 
