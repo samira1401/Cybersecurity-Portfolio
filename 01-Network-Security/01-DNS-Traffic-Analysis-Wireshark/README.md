@@ -40,6 +40,10 @@ Application du filtre `udp.port == 53` pour isoler les paquets de résolution de
 
 ---
 
-## 🛡️ Perspective Analyste SOC
-- **Protection Cloud & WAF :** L'existence de l'alias CNAME vers Imperva démontre l'utilisation d'un WAF cloud / service anti-DDoS pour protéger le serveur d'origine de Polytechnique Montréal.
-- **Surveillance DNS :** L'analyse des flux UDP/53 est essentielle en SOC pour identifier la fuite de données (DNS Tunneling), les redirections malveillantes (DNS Poisoning) ou l'activité de botnets (DGA).
+## 🛡️ Perspective & Analyse Sécurité
+
+- **Protection Cloud & WAF :** L'existence de l'alias CNAME pointant vers Imperva démontre l'utilisation d'un pare-feu applicatif (WAF) cloud et d'un service de protection anti-DDoS. Cela permet de filtrer le trafic malveillant en amont avant qu'il n'atteigne le serveur Web d'origine de Polytechnique Montréal.
+- **Importance de l'inspection DNS :** La surveillance du trafic UDP sur le port 53 est fondamentale pour détecter les anomalies réseau, telles que :
+  - **L'exfiltration / le tunnel DNS (DNS Tunneling) :** détournement du protocole pour faire sortir des données confidentielles.
+  - **L'empoisonnement DNS (DNS Poisoning) :** redirection malveillante d'utilisateurs vers de faux sites.
+  - **La détection d'activités suspectes :** identification de domaines générés automatiquement (DGA) ou de communications avec des serveurs de commande et contrôle (C2).
