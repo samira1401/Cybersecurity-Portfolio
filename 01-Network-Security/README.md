@@ -43,7 +43,7 @@ Voici une sélection de filtres de recherche utilisés lors des investigations :
 | **Erreurs de résolution DNS** | `dns.flags.rcode != 0` |
 | **Extraction par Socket (IP + Port)** | `ip.addr == 192.168.0.4 && tcp.port == 143` |
 
-------
+---
 ## 🧩 Cartographie MITRE ATT&CK
 
 | Tactique MITRE | Technique | Application dans ce projet |
@@ -52,7 +52,7 @@ Voici une sélection de filtres de recherche utilisés lors des investigations :
 | **Reconnaissance (TA043)** | Active Scanning (`T1595`) | Détection d'analyse de ports et requêtes DNS volumineuses |
 | **Discovery (TA0007)** | Network Service Discovery (`T1046`) | Identification de services non sécurisés exposés sur les ports standards (21, 25, 80, 110, 143) |
 
-------
+---
 ## 🚨 Détection Automatisée (Règles IDS Snort / Suricata)
 
 Exemple de règle pour détecter l'envoi d'identifiants FTP non chiffrés sur le réseau :
@@ -64,9 +64,7 @@ alert tcp $HOME_NET any ->$EXTERNAL_NET 21 (msg:"SEC-SOC - Transmission d'identi
 1. **Chiffrement Généralisé (TLS/SSL) :** Interdire l'usage des protocoles hérités en clair au profit de leurs équivalents chiffrés (HTTPS, IMAPS, POP3S, SMTPS avec TLS 1.3).
 
 
-
-
-
+---
 
 ## 📂 Laboratoires inclus
 
