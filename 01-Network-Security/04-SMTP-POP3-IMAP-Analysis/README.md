@@ -83,7 +83,7 @@ Le protocole **IMAP** permet la synchronisation et la gestion des courriels dire
 - **Indicateur de suivi des messages :** Utilisation des commandes `UID FETCH` pour interroger et récupérer les métadonnées de chaque message.
 
 #### 📩 Détails des messages identifiés :
-![Capture IMAP Session](./wireshark_session_IMAP_UID FETCH.png)
+![Capture IMAP Session](./imap-email-sync.png)
 1. **Message 1 :**
    - **De :** `"Buchanan, Bill"` (`B.Buchanan@napier.ac.uk`)
    - **Pour :** `digitalinvestigator@networksims.com`
