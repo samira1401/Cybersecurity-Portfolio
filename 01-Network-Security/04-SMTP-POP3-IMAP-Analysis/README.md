@@ -25,7 +25,7 @@
 Le protocole **SMTP** est utilisé pour le transfert et l'acheminement des courriels entre clients et serveurs (ou entre serveurs de messagerie).
 
 #### 📍 Métadonnées de la session :
-![Capture POP3 Session](./Wireshark_Analyse_Session_SMTP_Port25_192.168.0.12.png)
+![Capture SMTP Session](./Wireshark_Analyse_Session_SMTP_Port25_192.168.0.12.png)
 - **Hôte émetteur (Client) :** `192.168.0.12` | **Port source TCP :** `1713`
 - **Serveur SMTP (Destination) :** `192.168.0.13` | **Port service TCP :** `25`
 - **Initialisation :** Handshake TCP à partir du paquet #1 (`SYN` de `.12` vers `.13:25`).
