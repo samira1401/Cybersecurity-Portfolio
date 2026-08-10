@@ -82,19 +82,21 @@ Le protocole **IMAP** permet la synchronisation et la gestion des courriels dire
 - **Boîte aux lettres consultée :** `digitalinvestigator@networksims.com`
 - **Indicateur de suivi des messages :** Utilisation des commandes `UID FETCH` pour interroger et récupérer les métadonnées de chaque message.
 
-#### 📩 Détails des messages identifiés : ![Capture IMAP Session](./imap-email-sync.png)
+#### 📩 Détails des messages identifiés : 
+![Synchronisation et requêtes IMAP UID FETCH](./imap-email-sync.png)
+
 1. **Message 1 :**
-   - **De :** `"Buchanan, Bill"` (`B.Buchanan@napier.ac.uk`)
-   - **Pour :** `digitalinvestigator@networksims.com`
-   - **Sujet :** `Testing` | **Date :** `Thu, 22 Aug 2013 19:18:52 +0000`
+   **De :** `digitalinvestigator@networksims.com`
+   - **Pour :** `"Buchanan, Bill"` (`B.Buchanan@napier.ac.uk`)
+   - **Sujet :** `Testing` | **Date :** `Thu, 22 Aug 2013 20:18:00 +0000`
 2. **Message 2 :**
    - **De :** `"Buchanan, Bill"` (`B.Buchanan@napier.ac.uk`)
    - **Pour :** `digitalinvestigator@networksims.com`
-   - **Sujet :** `RE: Testing` | **Date :** `Thu, 22 Aug 2013 19:19:11 +0000`
+   - **Sujet :** `Testing` | **Date :** `Thu, 22 Aug 2013 19:18:52 +0000`
 3. **Message 3 :**
-   - **De :** `digitalinvestigator@networksims.com`
-   - **Pour :** `"Buchanan, Bill"` (`B.Buchanan@napier.ac.uk`)
-   - **Sujet :** `Testing` | **Date :** `Thu, 22 Aug 2013 20:18:00 +0000`
+   - **De :** `"Buchanan, Bill"` (`B.Buchanan@napier.ac.uk`)
+   - **Pour :** `DI` (`digitalinvestigator@networksims.com`)
+   - **Sujet :** `RE: Testing` | **Date :** `Thu, 22 Aug 2013 19:19:11 +0000`
 
 ---
 
@@ -104,4 +106,4 @@ Le protocole **IMAP** permet la synchronisation et la gestion des courriels dire
 - **Extraction judiciaire (Digital Forensics) :** Wireshark permet de reconstruire l'arbre complet d'une conversation de messagerie, d'identifier les adresses IP d'origine et d'extraire le contenu des courriels sans altérer les preuves.
 - **Recommandations de sécurisation :**
   - Exiger l'utilisation de déclinaisons chiffrées : **SMTPS** (port 465 ou submission 587 avec STARTTLS), **POP3S** (port 995) et **IMAPS** (port 993).
-  - Mettre en œuvre les mécanismes d'authentification et d'alignement de domaine : **SPF**, **DKIM** et **DMARC** pour prévenir l'usurpation d'usurpation d'adresse d'expéditeur (Email Spoofing).
+ 
