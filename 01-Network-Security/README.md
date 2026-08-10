@@ -53,18 +53,6 @@ Voici une sélection de filtres de recherche utilisés lors des investigations :
 | **Discovery (TA0007)** | Network Service Discovery (`T1046`) | Identification de services non sécurisés exposés sur les ports standards (21, 25, 80, 110, 143) |
 
 ---
-## 🚨 Détection Automatisée (Règles IDS Snort / Suricata)
-
-Exemple de règle pour détecter l'envoi d'identifiants FTP non chiffrés sur le réseau :
-
-```snort
-alert tcp $HOME_NET any ->$EXTERNAL_NET 21 (msg:"SEC-SOC - Transmission d'identifiants FTP non chiffrés"; flow:to_server,established; content:"PASS"; nocase; sid:1000001; rev:1;)
-
-## 🛡️ Recommandations & Plan d'Action (Mitigation)
-1. **Chiffrement Généralisé (TLS/SSL) :** Interdire l'usage des protocoles hérités en clair au profit de leurs équivalents chiffrés (HTTPS, IMAPS, POP3S, SMTPS avec TLS 1.3).
-
-
----
 
 ## 📂 Laboratoires inclus
 
