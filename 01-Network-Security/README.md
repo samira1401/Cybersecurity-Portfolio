@@ -10,6 +10,23 @@ Ce dossier regroupe les projets et laboratoires pratiques liés à la sécurité
 
 
 
+# 🌐 01 - Network Security
+
+Ce dossier regroupe les projets et laboratoires pratiques liés à la sécurité des réseaux, l'analyse de trafic et l'inspection de paquets.
+
+## 📂 Laboratoires inclus
+
+| Projet | Description | Statut |
+| :--- | :--- | :---: |
+| **[01-DNS-Traffic-Analysis-Wireshark](./01-DNS-Traffic-Analysis-Wireshark)** | Analyse du trafic DNS, de la résolution de noms et de l'encapsulation de paquets avec Wireshark | ✅ *Terminé* |
+| **[02-HTTP-Traffic-Analysis-Wireshark](./02-HTTP-Traffic-Analysis-Wireshark)** | Inspection du trafic Web clair (HTTP/80) et détection de formulaires/identifiants non chiffrés | ✅ *Terminé* |
+| **[03-FTP-Security-Analysis-Wireshark](./03-FTP-Security-Analysis-Wireshark)** | Analyse de session FTP (Port 21) et interception d'identifiants en clair | ✅ *Terminé* |
+| **[04-SMTP-Mail-Analysis-Wireshark](./04-SMTP-Mail-Analysis-Wireshark)** | Capture et analyse de flux d'envoi de courriels non sécurisés (Port 25) | ✅ *Terminé* |
+| **[05-POP3-Session-Analysis-Wireshark](./05-POP3-Session-Analysis-Wireshark)** | Audit de récupération de courriels via POP3 (Port 110) et extraction de requêtes | ✅ *Terminé* |
+| **[06-IMAP-Header-Analysis-Wireshark](./06-IMAP-Header-Analysis-Wireshark)** | Analyse forensic des commandes IMAP (Port 143), extraction d'en-têtes et métadonnées | ✅ *Terminé* |
+
+
+
 
 # 🔍 Projet 1 : Analyse de Trafic Réseau & Identification de Vulnérabilités (Wireshark)
 
