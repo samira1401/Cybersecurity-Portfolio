@@ -22,7 +22,7 @@ Au début de l'analyse, le serveur fonctionne normalement.
 
 Les entrées 47 à 49 montrent un **TCP Three-Way Handshake** classique :
 
-```text
+
 47 — SYN
 48 — SYN/ACK
 49 — ACK
