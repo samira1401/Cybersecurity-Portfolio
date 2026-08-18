@@ -1,24 +1,18 @@
 # ⏱️ Chronologie de l'attaque SYN Flood
 
-
 ## 1. Objectif
-
 
 Cette chronologie permet de reconstituer l'évolution de l'incident à partir des entrées du journal TCP/HTTP.
 
-
 L'analyse montre une progression en plusieurs étapes :
 
-
-1. fonctionnement normal du serveur ;
-2. apparition du trafic suspect ;
-3. augmentation des requêtes SYN ;
-4. dégradation des connexions légitimes ;
-5. interruption progressive du service.
-
+1. Fonctionnement normal du serveur
+2. Apparition du trafic suspect
+3. Augmentation des requêtes SYN
+4. Dégradation des connexions légitimes
+5. Interruption progressive du service
 
 ---
-
 
 ## 2. Fonctionnement normal — Entrées 47 à 51
 
@@ -32,7 +26,6 @@ Les entrées 47 à 49 montrent un **TCP Three-Way Handshake** classique :
 47 — SYN
 48 — SYN/ACK
 49 — ACK
-
 La connexion TCP est ensuite utilisée pour une communication HTTP.
 
 Entrée 50
