@@ -22,15 +22,11 @@ L'analyse montre une progression en plusieurs étapes :
 
 ## 2. Fonctionnement normal — Entrées 47 à 51
 
-
 ### ⏱️ Environ 3,14 à 3,35 secondes
-
 
 Au début de l'analyse, le serveur fonctionne normalement.
 
-
 Les entrées 47 à 49 montrent un **TCP Three-Way Handshake** classique :
-
 
 ```text
 47 — SYN
@@ -44,6 +40,7 @@ Entrée 50
 Le navigateur de l'utilisateur envoie la requête :
 
 GET /sales.html HTTP/1.1
+
 Entrée 51
 
 Le serveur répond :
