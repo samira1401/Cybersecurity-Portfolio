@@ -420,13 +420,6 @@ Pour le scénario étudié, les mesures prioritaires seraient :
 
 ---
 
-| 203.0.113.0                   |
---------------------------------
-       │
-       ▼
-| Nombreuses requêtes SYN        |
-----------------------------------
-
 ## 🔎 14. Corrélation avec l'analyse Wireshark
 
 Les mesures de mitigation proposées sont directement liées aux observations réalisées dans le journal réseau.
@@ -434,27 +427,25 @@ Les mesures de mitigation proposées sont directement liées aux observations r�
 L'analyse a montré :
 
 ```text
-| 203.0.113.0                   |
---------------------------------
+  203.0.113.0                   
        │
        ▼
-| Nombreuses requêtes SYN        |
-----------------------------------
+ Nombreuses requêtes SYN        
        │
        ▼
-| Pression sur les connexions TCP|
+ Pression sur les connexions TCP
        │
        ▼
-| RST/ACK |
+    RST/ACK 
        │
        ▼
-| 504 Gateway Time-out |
+ 504 Gateway Time-out 
        │
        ▼
-| Dégradation du service |
+ Dégradation du service 
        │
        ▼
-| Perte de disponibilité |
+ Perte de disponibilité 
 ```
 
 Les mesures de protection cherchent donc à interrompre cette chaîne le plus tôt possible.
