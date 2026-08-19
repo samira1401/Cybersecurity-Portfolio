@@ -8,7 +8,7 @@ L'objectif est d'analyser des journaux de trafic réseau afin d'identifier la ca
 
 L'analyse porte sur une **attaque TCP SYN Flood**, un type d'attaque par **déni de service (DoS)**.
 
-> ⚠️ Ce projet repose sur un scénario de cybersécurité simulé à des fins pédagogiques et professionnelles. Aucun système réel n'a été attaqué.
+> ⚠️ **Note :** Ce projet repose sur un scénario de cybersécurité simulé à des fins pédagogiques et professionnelles. Aucun système réel n'a été attaqué.
 
 ---
 
@@ -16,14 +16,14 @@ L'analyse porte sur une **attaque TCP SYN Flood**, un type d'attaque par **déni
 
 Ce projet a pour objectifs de :
 
-* analyser du trafic réseau TCP ;
-* comprendre le TCP Three-Way Handshake ;
-* identifier des requêtes SYN anormales ;
-* analyser des journaux réseau de type Wireshark ;
-* identifier le type d'attaque ;
-* analyser l'impact sur le serveur web ;
-* analyser l'impact sur les utilisateurs légitimes ;
-* proposer des mesures de protection.
+* Analyser le trafic réseau TCP
+* Comprendre le TCP Three-Way Handshake
+* Identifier les requêtes SYN anormales
+* Analyser les journaux réseau issus de Wireshark
+* Identifier le type d'attaque
+* Analyser l'impact sur le serveur web
+* Analyser l'impact sur les utilisateurs légitimes
+* Proposer des mesures de protection
 
 ---
 
@@ -56,7 +56,7 @@ vers le serveur web :
 sur le port :
 
 ```text
-443
+TCP/443 — HTTPS
 ```
 
 L'adresse IP suspecte continue d'envoyer des requêtes SYN à un rythme élevé.
@@ -65,67 +65,99 @@ Au fur et à mesure que l'attaque progresse, les connexions des utilisateurs lé
 
 Les journaux montrent notamment :
 
-* des requêtes SYN répétées ;
-* des connexions légitimes qui échouent ;
-* des paquets `[RST, ACK]` ;
-* des erreurs `HTTP/1.1 504 Gateway Time-out` ;
-* une disparition progressive du trafic légitime.
+* Des requêtes SYN répétées
+* Des connexions légitimes qui échouent
+* Des paquets `[RST, ACK]`
+* Des erreurs `HTTP/1.1 504 Gateway Time-out`
+* Une disparition progressive du trafic légitime
 
 Ces éléments sont compatibles avec une **attaque TCP SYN Flood**.
+
+---
+## 📸 Preuves visuelles
+
+### 1. Trafic normal
+
+![Trafic TCP normal](screenshots/01-trafic-normal.png)
+
+> **Trafic normal — TCP Three-Way Handshake et requête HTTP réussie.**
+> La connexion TCP est établie normalement et le serveur répond avec `HTTP/1.1 200 OK`.
+
+### 2. Trafic SYN Flood
+
+![Trafic SYN Flood](screenshots/02-syn-flood.png)
+
+> **Trafic suspect — augmentation importante des requêtes TCP SYN.**
+> Une même source génère de nombreuses tentatives de connexion vers le serveur HTTPS.
+
+### 3. Dégradation du service
+
+![Dégradation du service](screenshots/03-degradation-service.png)
+
+> **Dégradation du service — échecs de connexions et erreur HTTP 504.**
+> Des réinitialisations TCP et des erreurs de délai d'attente apparaissent pendant l'augmentation du trafic SYN.
 
 ---
 
 ## 🚨 Type d'attaque identifié
 
-**TCP SYN Flood — Déni de service direct (DoS)**
+### **TCP SYN Flood — Déni de service direct (DoS)**
 
-Dans ce scénario, le trafic malveillant provient d'une seule adresse IP.
+Dans ce scénario, le trafic malveillant observé provient d'une seule adresse IP.
 
 L'incident est donc identifié comme un **DoS direct**, plutôt qu'un DDoS.
 
+> **Remarque :** Cette classification est basée sur les données du scénario analysé. La présence d'une seule source observée dans le journal ne permet pas nécessairement d'exclure l'utilisation d'autres sources non visibles dans la capture.
+
 ---
 
-## 🤝 TCP Three-Way Handshake
+## 🤝 Protocole TCP à trois voies
 
 Une connexion TCP normale s'établit en trois étapes :
 
 ```text
-1. SYN
-Client → Serveur
-
-2. SYN/ACK
-Client ← Serveur
-
-3. ACK
-Client → Serveur
+Client                 Serveur
+  │                       │
+  │────── SYN ──────────►│
+  │                       │
+  │◄──── SYN/ACK ────────│
+  │                       │
+  │────── ACK ──────────►│
+  │                       │
+  ▼                       ▼
+Connexion TCP établie
 ```
 
 Après l'établissement de la connexion TCP, le navigateur peut envoyer une requête HTTP telle que :
 
-```text
+```http
 GET /sales.html HTTP/1.1
 ```
 
 Le serveur peut alors répondre :
 
-```text
+```http
 HTTP/1.1 200 OK
 ```
+
+Cette séquence représente le fonctionnement normal d'une connexion TCP suivie d'une communication HTTP.
 
 ---
 
 ## 💥 Impact
 
-L'augmentation importante des requêtes SYN entraîne une forte sollicitation des ressources du serveur.
+L'augmentation importante des requêtes SYN entraîne une forte sollicitation des ressources utilisées par le serveur pour gérer les connexions TCP.
 
 Les utilisateurs légitimes peuvent alors rencontrer :
 
-* des délais d'attente ;
-* des connexions interrompues ;
-* des erreurs HTTP ;
-* des difficultés à accéder au site web.
+* Des délais d'attente
+* Des connexions interrompues
+* Des erreurs HTTP
+* Des difficultés à accéder au site web
 
-À partir de l'entrée de journal **125**, le trafic légitime disparaît pratiquement du journal et les requêtes de l'attaque deviennent prédominantes.
+À partir de l'entrée **125**, le trafic légitime disparaît pratiquement du journal et les requêtes associées à l'activité suspecte deviennent prédominantes.
+
+L'impact principal observé est donc une **perte progressive de disponibilité du service web**.
 
 ---
 
@@ -133,15 +165,22 @@ Les utilisateurs légitimes peuvent alors rencontrer :
 
 Plusieurs mesures peuvent contribuer à réduire l'impact d'une attaque SYN Flood :
 
-* utiliser des **SYN Cookies** ;
-* mettre en place du **rate limiting** ;
-* renforcer les règles du pare-feu ;
-* utiliser des solutions **IDS/IPS** ;
-* mettre en place une protection contre les attaques DDoS ;
-* surveiller les volumes de trafic TCP ;
-* configurer des alertes sur les comportements anormaux.
+* Utiliser des **SYN Cookies**
+* Mettre en place une **limitation du débit (rate limiting)**
+* Renforcer les règles du pare-feu
+* Utiliser des solutions **IDS/IPS**
+* Mettre en place une protection contre les attaques DDoS
+* Surveiller les volumes de trafic TCP
+* Configurer des alertes sur les comportements anormaux
+* Mettre en place une procédure de réponse à incident
 
-Le simple blocage d'une adresse IP ne constitue pas une solution complète, car un attaquant peut utiliser d'autres adresses.
+Le simple blocage d'une adresse IP ne constitue pas une solution complète, car un attaquant peut utiliser d'autres adresses ou des adresses usurpées.
+
+La meilleure approche repose donc sur une **défense en profondeur**, combinant plusieurs mécanismes de détection, de filtrage et de protection.
+
+Pour plus de détails, voir :
+
+`mitigation.md`
 
 ---
 
@@ -162,10 +201,21 @@ Pression sur les ressources du serveur
         ↓
 RST/ACK et erreurs 504
         ↓
-Interruption du service
+Dégradation du service
+        ↓
+Perte de disponibilité
 ```
 
-Cette investigation m'a permis de développer mes compétences en analyse de trafic réseau, analyse de logs et identification d'incidents de sécurité.
+Cette enquête m'a permis de développer mes compétences en :
+
+* Analyse de trafic réseau
+* Analyse de logs
+* Identification d'incidents de sécurité
+* Analyse TCP/IP
+* Analyse d'une attaque DoS
+* Investigation réseau
+* Évaluation de l'impact
+* Proposition de mesures d'atténuation
 
 ---
 
@@ -173,21 +223,45 @@ Cette investigation m'a permis de développer mes compétences en analyse de tra
 
 ### Technologies
 
-* Wireshark
-* TCP/IP
-* TCP
-* HTTP/HTTPS
+* **Wireshark**
+* **TCP/IP**
+* **TCP**
+* **HTTP/HTTPS**
 
 ### Compétences
 
 * Analyse de trafic réseau
 * Analyse de journaux
-* TCP Three-Way Handshake
+* Compréhension du TCP Three-Way Handshake
 * Identification d'une attaque DoS
-* Analyse SYN Flood
+* Analyse d'une attaque SYN Flood
 * Investigation d'incident
 * Analyse des impacts
-* Mesures de mitigation
+* Mesures d'atténuation
+
+---
+
+## 📂 Documentation du projet
+
+Les différentes étapes de l'analyse sont documentées dans les fichiers suivants :
+
+```text
+evidence/
+└── Wireshark-TCP-HTTP-Log.xlsx
+
+rapport-incident.md
+analyse-wireshark.md
+chronologie-attaque.md
+mitigation.md
+```
+
+### Documents associés
+
+* **`rapport-incident.md`** — Présentation générale de l'incident
+* **`analyse-wireshark.md`** — Analyse détaillée du trafic réseau
+* **`chronologie-attaque.md`** — Reconstitution chronologique de l'attaque
+* **`mitigation.md`** — Mesures de détection, mitigation et réponse à incident
+* **`evidence/Wireshark-TCP-HTTP-Log.xlsx`** — Données réseau utilisées pour l'analyse
 
 ---
 
@@ -197,12 +271,12 @@ Ce projet est réalisé à des fins pédagogiques et professionnelles dans le ca
 
 Les adresses IP et les données réseau utilisées appartiennent à un scénario simulé.
 
-Aucun système réel n'a été ciblé.
+Aucun système réel n'a été ciblé ou attaqué.
 
 ---
 
 ## 👤 Auteur
 
-**[Samira.Bel]**
+**Samira Bel**
 
 Portfolio Cybersécurité
