@@ -78,21 +78,21 @@ Ces éléments sont compatibles avec une **attaque TCP SYN Flood**.
 
 ### 1. Trafic normal
 
-![Trafic TCP normal](screenshots/01-trafic-normal.png)
+![Trafic TCP normal](/01-trafic-normal.png)
 
 > **Trafic normal — TCP Three-Way Handshake et requête HTTP réussie.**
 > La connexion TCP est établie normalement et le serveur répond avec `HTTP/1.1 200 OK`.
 
 ### 2. Trafic SYN Flood
 
-![Trafic SYN Flood](screenshots/02-syn-flood.png)
+![Trafic SYN Flood](/02-syn-flood.png)
 
 > **Trafic suspect — augmentation importante des requêtes TCP SYN.**
 > Une même source génère de nombreuses tentatives de connexion vers le serveur HTTPS.
 
 ### 3. Dégradation du service
 
-![Dégradation du service](screenshots/03-degradation-service.png)
+![Dégradation du service](/03-degradation-service.png)
 
 > **Dégradation du service — échecs de connexions et erreur HTTP 504.**
 > Des réinitialisations TCP et des erreurs de délai d'attente apparaissent pendant l'augmentation du trafic SYN.
