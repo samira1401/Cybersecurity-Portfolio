@@ -420,6 +420,13 @@ Pour le scénario étudié, les mesures prioritaires seraient :
 
 ---
 
+| 203.0.113.0                   |
+--------------------------------
+       │
+       ▼
+| Nombreuses requêtes SYN        |
+----------------------------------
+
 ## 🔎 14. Corrélation avec l'analyse Wireshark
 
 Les mesures de mitigation proposées sont directement liées aux observations réalisées dans le journal réseau.
@@ -427,10 +434,12 @@ Les mesures de mitigation proposées sont directement liées aux observations r�
 L'analyse a montré :
 
 ```text
-| 203.0.113.0 |
+| 203.0.113.0                   |
+--------------------------------
        │
        ▼
-| Nombreuses requêtes SYN |
+| Nombreuses requêtes SYN        |
+----------------------------------
        │
        ▼
 | Pression sur les connexions TCP|
